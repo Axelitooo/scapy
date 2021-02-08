@@ -39,8 +39,8 @@ class unyte_argparser():
         self.parser.add_argument('--random-order', '-r', type=int,
                                  default=0, help='Set to 1 if segments must be send in a random order')
         # UTILITY
-        self.parser.add_argument('--logging-mode', '-l',
-                                 default="warning", choices=["warning", "info", "debug"], help='Logging mode, set to info for headers, debug for payloads')
+        self.parser.add_argument('--logging-level', '-l',
+                                 default="warning", choices=["none", "warning", "info", "debug"], help='Logging mode, warning by default, set to none for no logs, info for headers, debug for payloads')
         self.parser.add_argument('--capture', '-c', type=int,
                                  default=0, help='Set to 1 if you need a wireshark capture of the forwarded packets')
 

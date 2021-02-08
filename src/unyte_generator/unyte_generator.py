@@ -28,22 +28,24 @@ class udp_notif_generator:
         self.waiting_time = args.waiting_time
         self.probability_of_loss = args.probability_of_loss
         self.random_order = args.random_order
-        self.logging_mode = args.logging_mode
+        self.logging_level = args.logging_level
         self.capture = args.capture
 
         self.mock_generator = mock_message_generator()
 
         self.pid = os.getpid()
-        self.set_logger_level(self.logging_mode)
+        self.set_logger_level(self.logging_level)
         logging.info("Unyte scapy generator launched")
 
-    def set_logger_level(self, logging_mode):
-        if logging_mode == 'debug':
+    def set_logger_level(self, logging_level):
+        if logging_level == 'debug':
             logging.basicConfig(format='[%(levelname)s] (' + str(self.pid) + '): %(message)s', level=logging.DEBUG)
-        elif logging_mode == 'info':
+        elif logging_level == 'info':
             logging.basicConfig(format='[%(levelname)s] (' + str(self.pid) + '): %(message)s', level=logging.INFO)
-        elif logging_mode == 'warning':
+        elif logging_level == 'warning':
             logging.basicConfig(format='[%(levelname)s] (' + str(self.pid) + '): %(message)s', level=logging.WARNING)
+        elif logging_level == 'none':
+            logging.disable(level=logging.DEBUG)
 
     def log_used_args(self):
         attrs = vars(self)
